@@ -1,0 +1,302 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: #3b3b3b;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.nav ul {
+  list-style-type: none;
+}
+
+.nav li {
+  margin: 10px 0;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Main content styles */
+.main-content {
+  flex-grow: 1;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chat-header h2 {
+  font-size: 28px;
+  color: #333;
+}
+
+.gpt-selector button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #6c63ff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.gpt-selector button:hover {
+  background-color: #5750e0;
+}
+
+/* Chat area styles */
+.chat-area {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 180px);
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.input-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+#message-input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#submit-btn {
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+#submit-btn:hover {
+  background-color: #5750e0;
+}
+
+/* Wrapper for input container */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  font-family: Arial, sans-serif;
+}
+
+/* Label style */
+.input-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2C3E50; /* Dark color for the label */
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.input-label:hover {
+  color: #8e44ad; /* Change to purple on hover */
+}
+
+/* Input field style */
+.input-field {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid #BDC3C7;
+  border-radius: 12px;
+  color: #34495E; /* Default text color */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+/* Placeholder text style */
+.input-field::placeholder {
+  color: #95A5A6; /* Lighter gray for placeholder */
+}
+
+/* Input focus style */
+.input-field:focus {
+  border-color: #8e44ad; /* Purple border on focus */
+  box-shadow: 0 0 8px rgba(142, 68, 173, 0.2); /* Soft purple shadow */
+}
+
+/* Input hover style */
+.input-field:hover {
+  border-color: #8e44ad; /* Purple border on hover */
+  box-shadow: 0 0 8px rgba(142, 68, 173, 0.1); /* Soft purple shadow */
+}
+
+
+/* Wrapper for input container */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  font-family: Arial, sans-serif;
+}
+
+/* Label style */
+.input-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2C3E50; /* Dark color for the label */
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.input-label:hover {
+  color: #8e44ad; /* Change to purple on hover */
+}
+
+/* Input area (container for input and button) */
+.input-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px; /* Space between input and button */
+}
+
+/* Input field style */
+.input-field {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid #BDC3C7;
+  border-radius: 12px;
+  color: #34495E; /* Default text color */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  height: 110%;
+  width: 90%; /* Set input width to leave space for button */
+}
+
+/* Placeholder text style */
+.input-field::placeholder {
+  color: #95A5A6; /* Lighter gray for placeholder */
+}
+
+/* Input focus style */
+.input-field:focus {
+  border-color: #8e44ad; /* Purple border on focus */
+  box-shadow: 0 0 8px rgba(142, 68, 173, 0.2); /* Soft purple shadow */
+}
+
+/* Input hover style */
+.input-field:hover {
+  border-color: #8e44ad; /* Purple border on hover */
+  box-shadow: 0 0 8px rgba(142, 68, 173, 0.1); /* Soft purple shadow */
+}
+
+/* Submit button style */
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 500;
+}
+
+.submit-btn:hover {
+  background-color: #5750e0; /* Darker purple on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(142, 68, 173, 0.5); /* Soft focus shadow */
+}
+
+/* Tombol Submit */
+.submit-btn {
+  border-radius: 16px;
+  box-shadow: 45px 76px 113px 7px rgba(112, 144, 176, 0.08);
+  transition: .25s all ease;
+  box-sizing: border-box;
+  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%);
+  color: white;
+}
+
+.submit-btn:focus,
+.submit-btn:active {
+  box-shadow: none;
+  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%);
+}
+
+.submit-btn:hover {
+  box-shadow: 0px 21px 27px -10px rgba(96, 60, 255, 0.48) !important;
+  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%) !important;
+}
+
+/* Transparent Variant */
+.submit-btn.transparent {
+  background: transparent;
+  color: #003366; /* Dark navy color for light mode */
+  box-shadow: none;
+}
+
+.submit-btn.transparent:hover {
+  background: rgba(243, 243, 243, 0.1); /* Light hover background */
+}
+
+/* Red Variant */
+.submit-btn.red {
+  background: #FFEBEB;
+  color: #FF4D4D;
+  box-shadow: none;
+}
+
+.submit-btn.red:hover {
+  background: rgba(255, 230, 230, 0.8);
+}
