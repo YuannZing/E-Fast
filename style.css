@@ -1,302 +1,237 @@
-/* General styles */
-* {
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-/* Container layout */
-.container {
+  background-color: #FDFEFF;
+  color: #333;
   display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
-/* Sidebar styles */
+/* Container */
+.container {
+  display: flex;
+  height: 100%;
+  overflow: hidden; /* Pastikan scroll hanya di body */
+}
+
+/* Sidebar */
 .sidebar {
   width: 250px;
-  background-color: #3b3b3b;
-  color: white;
-  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10; /* Pastikan sidebar di atas konten */
 }
 
 .logo {
-  font-size: 24px;
   font-weight: bold;
+  font-size: 20px;
+  color: #333;
   margin-bottom: 20px;
 }
 
 .nav ul {
-  list-style-type: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.nav li {
+.nav ul li {
   margin: 10px 0;
 }
 
-.nav a {
-  color: white;
+.nav ul li a {
   text-decoration: none;
-  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
-/* Main content styles */
+.nav ul li a i {
+  margin-right: 10px;
+}
+
+/* Main Content */
 .main-content {
-  flex-grow: 1;
-  background-color: #f4f4f4;
-  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  position: relative;
+  overflow: hidden; /* Hilangkan scroll di main-content */
+  height: 100vh;
 }
 
 .chat-header {
+  padding: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.chat-header h2 {
-  font-size: 28px;
-  color: #333;
-}
-
-.gpt-selector button {
-  padding: 10px 20px;
-  margin-left: 10px;
-  background-color: #6c63ff;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.gpt-selector button:hover {
-  background-color: #5750e0;
-}
-
-/* Chat area styles */
-.chat-area {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
   background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: calc(100vh - 180px);
+  z-index: 10;
+}
+
+.chat-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.chat-header p {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+.theme-toggle {
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Chat Area */
+.chat-area {
+  flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.messages {
-  flex-grow: 1;
-  margin-bottom: 20px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-.input-area {
-  display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+  padding-bottom: 10px; /* Agar input tetap terlihat */
 }
 
-#message-input {
-  width: 80%;
+/* Container untuk seluruh pesan */
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Jarak antar bubble */
+    max-height: 400px;
+    overflow-y: scroll; /* Scroll jika terlalu panjang */
+    padding: 10px;
+    background: #f9f9f9;
+    box-sizing: border-box; /* Mengatur ukuran total termasuk padding dan border */
+    scrollbar-width: thin; /* Mengatur lebar scrollbar */
+  }
+  
+  /* Mengatur scrollbar pada Webkit (Chrome, Safari) */
+  .messages::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+/* Input Container */
+.input-container {
+  background-color: #fff;
+  border-top: 1px solid #eee;
   padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 
-#submit-btn {
-  padding: 10px 20px;
-  background-color: #6c63ff;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-}
-
-#submit-btn:hover {
-  background-color: #5750e0;
-}
-
-/* Wrapper for input container */
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-  font-family: Arial, sans-serif;
-}
-
-/* Label style */
-.input-label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #2C3E50; /* Dark color for the label */
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-
-.input-label:hover {
-  color: #8e44ad; /* Change to purple on hover */
-}
-
-/* Input field style */
-.input-field {
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: transparent;
-  border: 1px solid #BDC3C7;
-  border-radius: 12px;
-  color: #34495E; /* Default text color */
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
-}
-
-/* Placeholder text style */
-.input-field::placeholder {
-  color: #95A5A6; /* Lighter gray for placeholder */
-}
-
-/* Input focus style */
-.input-field:focus {
-  border-color: #8e44ad; /* Purple border on focus */
-  box-shadow: 0 0 8px rgba(142, 68, 173, 0.2); /* Soft purple shadow */
-}
-
-/* Input hover style */
-.input-field:hover {
-  border-color: #8e44ad; /* Purple border on hover */
-  box-shadow: 0 0 8px rgba(142, 68, 173, 0.1); /* Soft purple shadow */
-}
-
-
-/* Wrapper for input container */
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-  font-family: Arial, sans-serif;
-}
-
-/* Label style */
-.input-label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #2C3E50; /* Dark color for the label */
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-
-.input-label:hover {
-  color: #8e44ad; /* Change to purple on hover */
-}
-
-/* Input area (container for input and button) */
 .input-area {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px; /* Space between input and button */
 }
 
-/* Input field style */
 .input-field {
-  padding: 12px;
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
   font-size: 14px;
-  font-weight: 500;
-  background-color: transparent;
-  border: 1px solid #BDC3C7;
-  border-radius: 12px;
-  color: #34495E; /* Default text color */
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
-  height: 110%;
-  width: 90%; /* Set input width to leave space for button */
+  margin-right: 10px;
 }
 
-/* Placeholder text style */
-.input-field::placeholder {
-  color: #95A5A6; /* Lighter gray for placeholder */
-}
-
-/* Input focus style */
-.input-field:focus {
-  border-color: #8e44ad; /* Purple border on focus */
-  box-shadow: 0 0 8px rgba(142, 68, 173, 0.2); /* Soft purple shadow */
-}
-
-/* Input hover style */
-.input-field:hover {
-  border-color: #8e44ad; /* Purple border on hover */
-  box-shadow: 0 0 8px rgba(142, 68, 173, 0.1); /* Soft purple shadow */
-}
-
-/* Submit button style */
+.attachment-btn,
 .submit-btn {
-  padding: 12px 20px;
   background-color: #6c63ff;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  transition: background-color 0.3s, transform 0.2s;
-  font-weight: 500;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
+.attachment-btn:hover,
 .submit-btn:hover {
-  background-color: #5750e0; /* Darker purple on hover */
-  transform: scale(1.05); /* Slight zoom effect */
+  background-color: #5148c8;
 }
 
-.submit-btn:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(142, 68, 173, 0.5); /* Soft focus shadow */
+/* Gaya umum untuk bubble */
+.bubble {
+  max-width: 70%; /* Membatasi lebar bubble */
+  margin: 5px 0;
+  padding: 12px 18px;
+  border-radius: 25px; /* Membuat sudut lebih bulat */
+  font-size: 14px;
+  line-height: 1.5;
+  display: inline-block;
+  word-wrap: break-word;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  position: relative;
 }
 
-/* Tombol Submit */
-.submit-btn {
-  border-radius: 16px;
-  box-shadow: 45px 76px 113px 7px rgba(112, 144, 176, 0.08);
-  transition: .25s all ease;
-  box-sizing: border-box;
-  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%);
+/* Bubble pengguna (kanan) */
+.user-bubble {
+  background-color: #6c63ff; /* Warna biru */
   color: white;
+  align-self: flex-end; /* Bubble pengguna di kanan */
+  border-bottom-right-radius: 5px; /* Sudut bawah kanan lebih kecil */
+  margin-left: auto;
+  margin-right: 20px;
 }
 
-.submit-btn:focus,
-.submit-btn:active {
-  box-shadow: none;
-  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%);
+/* Bubble respons (kiri) */
+.response-bubble {
+  background-color: #f1f1f1; /* Warna abu-abu muda */
+  color: #333;
+  align-self: flex-start; /* Bubble respons di kiri */
+  border-bottom-left-radius: 5px; /* Sudut bawah kiri lebih kecil */
+  margin-right: auto;
+  margin-top: 10px; /* Sedikit jarak vertikal ke bawah */
+  margin-left: 20px;
 }
 
-.submit-btn:hover {
-  box-shadow: 0px 21px 27px -10px rgba(96, 60, 255, 0.48) !important;
-  background: linear-gradient(15.46deg, #4A25E1 26.3%, #7B5AFF 86.4%) !important;
+/* Animasi untuk bubble (opsional) */
+.bubble {
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Transparent Variant */
-.submit-btn.transparent {
-  background: transparent;
-  color: #003366; /* Dark navy color for light mode */
-  box-shadow: none;
-}
-
-.submit-btn.transparent:hover {
-  background: rgba(243, 243, 243, 0.1); /* Light hover background */
-}
-
-/* Red Variant */
-.submit-btn.red {
-  background: #FFEBEB;
-  color: #FF4D4D;
-  box-shadow: none;
-}
-
-.submit-btn.red:hover {
-  background: rgba(255, 230, 230, 0.8);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
