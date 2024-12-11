@@ -371,7 +371,7 @@ body {
 }
 
 /* Bubble respons (kiri) */
-.bot-bubble {
+.response-bubble {
   background-color: #f0f0f0; /* Warna abu-abu */
   color: black;
   align-self: flex-start; /* Bubble respons di kiri */

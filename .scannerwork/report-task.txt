@@ -1,0 +1,6 @@
+projectKey=E-Fast
+serverUrl=http://localhost:9000
+serverVersion=24.12.0.100206
+dashboardUrl=http://localhost:9000/dashboard?id=E-Fast
+ceTaskId=8fca845b-e8a3-4205-ad6a-6f79bfb96474
+ceTaskUrl=http://localhost:9000/api/ce/task?id=8fca845b-e8a3-4205-ad6a-6f79bfb96474
