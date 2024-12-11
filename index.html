@@ -9,27 +9,37 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="loader.css" />
   </head>
   <body>
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar" id="sidebar">
-        <div class="logo">E-FAST AI</div>
+        <i class="fas fa-bars" id="toggle-sidebar-btn"></i>
+        <div class="logo">
+          <span class="logo-text">E-FAST AI</span>
+        </div>
         <nav class="nav">
           <ul>
             <li>
-              <a href="#"><i class="fas fa-comments"></i> Chat UI</a>
+              <a href="#"><i class="fas fa-comments"></i><span> Chat UI</span></a>
             </li>
           </ul>
         </nav>
       </div>
+      
 
       <!-- Main content -->
       <div class="main-content">
         <div class="chat-header">
           <p>Pages / Chat UI</p>
           <h1>Chat UI</h1>
-          <div class="theme-toggle">
+          <div
+            class="theme-toggle"
+            id="theme-toggle"
+            role="button"
+            tabindex="0"
+          >
             <i class="fas fa-moon"></i>
           </div>
         </div>
@@ -40,15 +50,30 @@
           </div>
           <div class="input-container">
             <div class="input-area">
-              <input
-                type="text"
-                id="input-field"
-                class="input-field"
-                placeholder="Type your message here..."
-              />
+              <div class="input-chat">
+                <!-- Area preview file -->
+                <div id="file-preview" class="file-preview"></div>
+
+                <!-- Textarea untuk pesan -->
+                <textarea
+                  class="input-field"
+                  placeholder="Type your message here..."
+                ></textarea>
+              </div>
+
+              <!-- Tombol untuk melampirkan file -->
               <button id="attachment-btn" class="attachment-btn">
                 <i class="fas fa-paperclip"></i>
               </button>
+              <input
+                type="file"
+                id="file-input"
+                class="file-input"
+                accept="image/*,audio/*,.pdf"
+                hidden
+              />
+
+              <!-- Tombol untuk mengirim pesan -->
               <button id="submit-btn" class="submit-btn">
                 <i class="fas fa-paper-plane"></i>
               </button>
@@ -57,60 +82,10 @@
         </div>
       </div>
     </div>
-    <script>
-      // Ambil elemen DOM
-      const inputField = document.getElementById("input-field");
-      const submitButton = document.getElementById("submit-btn");
-      const messagesContainer = document.querySelector(".messages");
 
-      // Fungsi untuk menambah bubble chat
-      function addBubble(text, isUser = true) {
-        const bubble = document.createElement("div");
-        bubble.classList.add(
-          "bubble",
-          isUser ? "user-bubble" : "response-bubble"
-        );
-        bubble.textContent = text;
-        messagesContainer.appendChild(bubble);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll ke bawah
-      }
-
-      // Fungsi untuk menangani submit
-      function handleSubmit() {
-        const userInput = inputField.value.trim();
-        if (userInput) {
-          // Tambahkan teks pengguna sebagai bubble
-          addBubble(userInput, true);
-
-          // Bersihkan input
-          inputField.value = "";
-
-          // Tambahkan respons otomatis (simulasi)
-          setTimeout(() => {
-            const response = getResponse(userInput);
-            addBubble(response, false);
-          }, 500); // Simulasi jeda respons
-        }
-      }
-
-      // Fungsi untuk mendapatkan respons (contoh respons sederhana)
-      function getResponse(input) {
-        if (input.toLowerCase().includes("halo")) {
-          return "Halo! Ada yang bisa saya bantu? 😊";
-        }
-        return "Terima kasih telah menghubungi! Saya akan membantu Anda.";
-      }
-
-      // Tambahkan event listener
-      submitButton.addEventListener("click", handleSubmit);
-
-      // Tambahkan event listener untuk "Enter" pada input
-      inputField.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          handleSubmit();
-        }
-      });
-    </script>
+    <!-- Tambahkan pustaka marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <!-- <script type="module" src="tes.js"></script> -->
   </body>
 </html>
