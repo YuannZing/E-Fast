@@ -1,7 +1,3 @@
-
-// import fs from "node:fs";
-// import FormData from "form-data";
-
 const API_KEY = "sk-DK0Lt1CWGZYnmrL7zCBeCsQjmikpPiv4E5swK7peCzSD1w2W";
 const API_URL = "https://api.stability.ai/v2beta/stable-image/generate/sd3";
 
@@ -9,6 +5,8 @@ const API_URL = "https://api.stability.ai/v2beta/stable-image/generate/sd3";
 const inputField = document.querySelector(".input-field");
 const submitButton = document.getElementById("submit-btn");
 const messagesContainer = document.querySelector(".messages");
+
+
 
 // Chat history
 let chatHistory = [];
@@ -31,54 +29,62 @@ function loadHistory() {
     chatHistory = JSON.parse(storedHistory);
     chatHistory.forEach((message) => {
       const isUser = message.role === "user";
-      addBubble(message.text, isUser);
+      if (message.isImage) {
+        // Jika pesan adalah gambar, tambahkan sebagai elemen gambar
+        addBubble(`<img class="generated-image" src="${message.text}" alt="Generated Image" />`, isUser, true);
+      } else {
+        // Jika pesan adalah teks, tambahkan sebagai bubble teks
+        addBubble(message.text, isUser);
+      }
     });
   }
 }
 
 // Add a message to chat history
-function addToHistory(role, text) {
-  chatHistory.push({ role, text });
+function addToHistory(role, text, isImage = false) {
+  chatHistory.push({ role, text, isImage });
   if (chatHistory.length > 20) {
     chatHistory.shift();
   }
   saveHistory();
+  
 }
 
 // Add a chat bubble to the UI
-function addBubble(text, isUser = true) {
+function addBubble(content, isUser = true, isHtml = false) {
   const bubble = document.createElement("div");
   bubble.classList.add("bubble", isUser ? "user-bubble" : "response-bubble");
-  bubble.textContent = text;
+  if (isHtml) {
+    bubble.innerHTML = content; // Jika konten berupa HTML, gunakan innerHTML
+  } else {
+    bubble.textContent = content; // Jika konten berupa teks, gunakan textContent
+  }
   messagesContainer.appendChild(bubble);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 // Generate image using Stable Diffusion API
 async function generateImage(prompt) {
-  const payload = {
-    prompt,
-    output_format: "jpeg",
-    aspect_ratio: "1:1",
-    seed: "0",
-    model: "sd3-medium"
-  };
+  const formData = new FormData();
+  formData.append("prompt", prompt);
+  formData.append("output_format", "jpeg");
+  formData.append("aspect_ratio", "1:1");
+  formData.append("seed", "0");
+  formData.append("model", "sd3.5-medium");
 
   try {
-    const response = await axios.post(
-      API_URL,
-      payload,
-      {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          Accept: "image/*",
-        },
-        responseType: "arraybuffer"
-      }
-    );
+    const response = await axios.post(API_URL, formData, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        Accept: "image/*",
+      },
+      responseType: "arraybuffer",
+    });
 
     if (response.status === 200) {
-      const base64Image = Buffer.from(response.data, "binary").toString("base64");
+      const base64Image = btoa(
+        new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), "")
+      );
       return `data:image/jpeg;base64,${base64Image}`;
     } else {
       throw new Error(`${response.status}: ${response.statusText}`);
@@ -107,8 +113,13 @@ async function handleSubmit() {
     const imageUrl = await generateImage(userInput);
 
     if (imageUrl) {
-      loaderBubble.innerHTML = `<img src="${imageUrl}" alt="Generated Image" />`;
-      addToHistory("model", "[Generated Image]");
+      const imgElement = document.createElement("img");
+      imgElement.src = imageUrl;
+      imgElement.alt = "Generated Image";
+      imgElement.classList.add("generated-image");
+      loaderBubble.innerHTML = "";
+      loaderBubble.appendChild(imgElement); 
+      addToHistory("model",imageUrl, true);
     } else {
       loaderBubble.textContent = "Failed to generate image. Please try again.";
     }
@@ -123,6 +134,13 @@ inputField.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     handleSubmit();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    chatHistory = []; // Kosongkan riwayat di memori
+    localStorage.removeItem("chatHistory"); // Hapus dari localStorage
+    messagesContainer.innerHTML = "";
   }
 });
 
