@@ -12,28 +12,46 @@
     <link rel="stylesheet" href="loader.css" />
   </head>
   <body>
+    <div class="overlay"></div>
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar" id="sidebar">
         <i class="fas fa-bars" id="toggle-sidebar-btn"></i>
+        <!-- tombol khusus untuk versi mobile -->
+        <button
+          class="toggle-sidebar-btn-mobile"
+          id="toggle-sidebar-btn-mobile"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
         <div class="logo">
-          <span class="logo-text">E-FAST AI</span>
+          <!-- <span class="logo-text">E-FAST AI</span> -->
         </div>
         <nav class="nav">
           <ul>
             <li>
-              <a href="#"><i class="fas fa-comments"></i><span> Chat UI</span></a>
+              <a href="#"
+                ><i class="fas fa-comments"></i><span> Chat UI</span></a
+              >
+            </li>
+            <li>
+              <a href="generate_image.html"
+                ><i class="fas fa-image"></i><span> Generate Image</span></a
+              >
             </li>
           </ul>
         </nav>
       </div>
-      
 
       <!-- Main content -->
       <div class="main-content">
         <div class="chat-header">
-          <p>Pages / Chat UI</p>
-          <h1>Chat UI</h1>
+          <button id="mobile-sidebar-toggle" class="mobile-sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <p class="chat-title">Chat UI</p>
+          <h1>E-FAST AI</h1>
           <div
             class="theme-toggle"
             id="theme-toggle"
@@ -86,6 +104,30 @@
     <!-- Tambahkan pustaka marked.js -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="script.js"></script>
+    <script>
+      const sidebarToggle = document.getElementById("mobile-sidebar-toggle");
+      const sidebarMobileToggle = document.getElementById(
+        "toggle-sidebar-btn-mobile"
+      );
+      const sidebar = document.querySelector(".sidebar");
+      const overlay = document.querySelector(".overlay");
+
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open"); // Toggle sidebar visibility
+        overlay.classList.toggle("active"); // Toggle overlay visibility
+      });
+
+      // Hapus class 'open' dari sidebar ketika tombol toggle-sidebar-btn-mobile ditekan
+      sidebarMobileToggle.addEventListener("click", () => {
+        sidebar.classList.remove("open"); // Hilangkan class 'open'
+        overlay.classList.remove("active"); // Hilangkan overlay
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open"); // Tutup sidebar
+        overlay.classList.remove("active"); // Tutup overlay
+      });
+    </script>
     <!-- <script type="module" src="tes.js"></script> -->
   </body>
 </html>

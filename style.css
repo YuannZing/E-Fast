@@ -17,20 +17,6 @@ body {
   overflow: hidden; /* Pastikan scroll hanya di body */
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 10; /* Pastikan sidebar di atas konten */
-}
-
 .logo {
   font-weight: bold;
   font-size: 20px;
@@ -126,9 +112,26 @@ body {
   transform: rotate(180deg); /* Rotasi ikon saat sidebar tersembunyi */
 }
 
+/* Sidebar */
+/* .sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10; 
+} */
+
 /* Gaya untuk sidebar */
 .sidebar {
   width: 250px;
+  padding: 20px;
+  position: sticky;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
   overflow: hidden;
 }
@@ -198,6 +201,86 @@ body {
 .sidebar-hidden .nav a i {
   margin: 0;
 }
+
+/* Default: Tampilkan <p> dan sembunyikan tombol */
+.chat-title {
+  display: block;
+}
+
+.mobile-sidebar-toggle {
+  display: none; /* Tombol tidak terlihat secara default */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.toggle-sidebar-btn-mobile{
+  display: none;
+}
+
+/* Gaya untuk mode mobile */
+@media (max-width: 768px) {
+  #toggle-sidebar-btn{
+    display: none;
+  }
+  .sidebar {
+    position: fixed; /* Tetapkan sidebar di atas */
+    top: 0;
+    left: 0;
+    height: 100%; /* Buat sidebar menutupi layar penuh */
+    width: 250px;
+    z-index: 1000; /* Pastikan sidebar berada di atas elemen lainnya */
+    background: rgba(255, 255, 255, 0.95); /* Tambahkan latar belakang semi-transparan */
+    transform: translateX(-100%); /* Sembunyikan sidebar di luar layar */
+    transition: transform 0.3s ease;
+  }
+
+  /* Tampilkan sidebar ketika aktif */
+  .sidebar.open {
+    transform: translateX(0); /* Tampilkan sidebar */
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Lapisan gelap untuk menutupi chat */
+    z-index: 999; /* Pastikan lapisan berada di bawah sidebar */
+    display: none; /* Sembunyikan overlay secara default */
+  }
+
+  /* Tampilkan overlay saat sidebar aktif */
+  .overlay.active {
+    display: block;
+  }
+
+  .chat-title {
+    display: none; /* Sembunyikan <p> di mode mobile */
+  }
+
+  .mobile-sidebar-toggle {
+    display: block; /* Tampilkan tombol di mode mobile */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+  }
+  .toggle-sidebar-btn-mobile{
+    display: block; /* Tampilkan tombol di mode mobile */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+  }
+}
+
+
 
 
 
