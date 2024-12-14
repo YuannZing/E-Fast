@@ -102,6 +102,7 @@ body {
   cursor: pointer;
   color: #333;
   margin-left: 1rem;
+  margin-top: 0.5rem;
 }
 
 #toggle-sidebar-btn i {
@@ -131,6 +132,7 @@ body {
   width: 250px;
   padding: 20px;
   position: sticky;
+  background-color: #F9F9F9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
   overflow: hidden;
@@ -278,6 +280,14 @@ body {
     color: #333;
     cursor: pointer;
   }
+  body.dark-mode .mobile-sidebar-toggle{
+    display: block; /* Tampilkan tombol di mode mobile */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #eee;
+    cursor: pointer;
+  }
 }
 
 
@@ -321,7 +331,7 @@ body {
 
 /* Input Container */
 .input-container {
-  background-color: #fff;
+  background-color: white;
   border-top: 1px solid #eee;
   padding: 10px;
   position: sticky;
@@ -476,4 +486,97 @@ body {
 /* Apply animasi fade-in pada bubble */
 .bubble {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Mode Gelap */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+/* Sidebar dalam Mode Gelap */
+body.dark-mode .sidebar {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+body.dark-mode #toggle-sidebar-btn,
+body.dark-mode .toggle-sidebar-btn-mobile {
+  color: #f1f1f1; /* Warna tombol pada mode gelap */
+}
+
+
+
+body.dark-mode .sidebar .nav a {
+  color: #f1f1f1;
+}
+
+body.dark-mode .sidebar .nav a:hover {
+  background-color: #3a3a3a;
+}
+
+/* Header dalam Mode Gelap */
+body.dark-mode .chat-header {
+  background-color: #2c2c2c;
+  border-bottom: 1px solid #333;
+  color: #f1f1f1;
+}
+
+/* Area Chat dalam Mode Gelap */
+body.dark-mode .chat-area {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+body.dark-mode .messages {
+  background-color: #2c2c2c;
+}
+
+/* Pesan dalam Mode Gelap */
+body.dark-mode .response-bubble {
+  background-color: #3a3a3a;
+  color: #f1f1f1;
+}
+
+body.dark-mode .user-bubble {
+  background-color: #4c4cff;
+  color: #ffffff;
+}
+
+body.dark-mode .theme-toggle{
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Input Container dalam Mode Gelap */
+body.dark-mode .input-container {
+  background-color: #2c2c2c;
+  border-top: 1px solid #444444;
+}
+
+body.dark-mode .file-item{
+  background-color: #3a3a3a;
+}
+body.dark-mode .file-name{
+  color: #fff;
+}
+
+body.dark-mode .input-field {
+  background-color: #3a3a3a;
+  color: #f1f1f1;
+  border: 1px solid #666;
+}
+
+body.dark-mode .input-field::placeholder {
+  color: #bbbbbb;
+}
+
+/* Tombol dalam Mode Gelap */
+body.dark-mode .attachment-btn,
+body.dark-mode .submit-btn {
+  background-color: #4c4cff;
+  color: #ffffff;
+}
+
+body.dark-mode .attachment-btn:hover,
+body.dark-mode .submit-btn:hover {
+  background-color: #3838cc;
 }
