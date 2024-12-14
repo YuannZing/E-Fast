@@ -318,6 +318,11 @@ body {
   will-change: scroll-position;
   contain: layout paint;
 }
+.generated-image {
+  max-width: 100%;
+  max-height: 100%; 
+  height:auto;
+}
 
 /* Scrollbar pada Webkit (Chrome, Safari) */
 .messages::-webkit-scrollbar {

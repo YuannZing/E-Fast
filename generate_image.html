@@ -1,1 +1,122 @@
-p
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="loader.css" />
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <i class="fas fa-bars" id="toggle-sidebar-btn"></i>
+        <!-- tombol khusus untuk versi mobile -->
+        <button
+          class="toggle-sidebar-btn-mobile"
+          id="toggle-sidebar-btn-mobile"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="logo">
+          <!-- <span class="logo-text">E-FAST AI</span> -->
+        </div>
+        <nav class="nav">
+          <ul>
+            <li>
+              <a href="index.html"
+                ><i class="fas fa-comments"></i><span> Chat UI</span></a
+              >
+            </li>
+            <li>
+              <a href="generate_image.html"
+                ><i class="fas fa-image"></i><span> Generate Image</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main content -->
+      <div class="main-content">
+        <div class="chat-header">
+          <button id="mobile-sidebar-toggle" class="mobile-sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <p class="chat-title">Chat UI</p>
+          <h1>E-FAST AI</h1>
+          <div
+            class="theme-toggle"
+            id="theme-toggle"
+            role="button"
+            tabindex="0"
+          >
+            <i class="fas fa-moon"></i>
+          </div>
+        </div>
+
+        <div class="chat-area">
+          <div class="messages">
+            <!-- Messages will go here -->
+          </div>
+          <div class="input-container">
+            <div class="input-area">
+              <div class="input-chat">
+                <!-- Area preview file -->
+                <div id="file-preview" class="file-preview"></div>
+
+                <!-- Textarea untuk pesan -->
+                <textarea
+                  class="input-field"
+                  placeholder="Type your message here..."
+                ></textarea>
+              </div>
+
+              <!-- Tombol untuk mengirim pesan -->
+              <button id="submit-btn" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tambahkan pustaka marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="script1.js"></script>
+    <script>
+      const sidebarToggle = document.getElementById("mobile-sidebar-toggle");
+      const sidebarMobileToggle = document.getElementById(
+        "toggle-sidebar-btn-mobile"
+      );
+      const sidebar = document.querySelector(".sidebar");
+      const overlay = document.querySelector(".overlay");
+
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open"); // Toggle sidebar visibility
+        overlay.classList.toggle("active"); // Toggle overlay visibility
+      });
+
+      // Hapus class 'open' dari sidebar ketika tombol toggle-sidebar-btn-mobile ditekan
+      sidebarMobileToggle.addEventListener("click", () => {
+        sidebar.classList.remove("open"); // Hilangkan class 'open'
+        overlay.classList.remove("active"); // Hilangkan overlay
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open"); // Tutup sidebar
+        overlay.classList.remove("active"); // Tutup overlay
+      });
+    </script>
+    <!-- <script type="module" src="tes.js"></script> -->
+  </body>
+</html>
